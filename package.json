@@ -2,6 +2,7 @@
     "name": "bettercomment",
     "displayName": "Better Comment",
     "description": "Toggle block or line comments depending on cursor position",
+    "icon": "icon.png",
     "version": "0.0.1",
     "publisher": "Gruntfuggly",
     "engines": {
@@ -29,9 +30,6 @@
                 "when": "editorTextFocus && !editorReadonly"
             }
         ]
-    },
-    "scripts": {
-        "postinstall": "node ./node_modules/vscode/bin/install"
     },
     "devDependencies": {
         "typescript": "^2.0.3",
