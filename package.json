@@ -3,7 +3,7 @@
     "displayName": "Better Comment",
     "description": "Toggle block or line comments depending on cursor position",
     "icon": "icon.png",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "Gruntfuggly",
     "engines": {
         "vscode": "^1.5.0"

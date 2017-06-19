@@ -25,8 +25,7 @@ function activate( context ) {
         var selection = textEditor.selection;
 
         var s = selection.start;
-        var e = selection.end;
-        if( ( s.line === e.line && s.character === e.character ) || s.character === 0 ) {
+        if( s.character === 0 ) {
             vscode.commands.executeCommand( 'editor.action.commentLine' );
         }
         else {
