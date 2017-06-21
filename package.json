@@ -3,7 +3,7 @@
     "displayName": "Better Comment",
     "description": "Toggle block or line comments depending on cursor position",
     "icon": "icon.png",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "publisher": "Gruntfuggly",
     "repository": "https://github.com/Gruntfuggly/bettercomment",
     "engines": {

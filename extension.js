@@ -1,17 +1,28 @@
+
 var vscode = require( 'vscode' );
 
 function activate( context )
 {
     var disposable = vscode.commands.registerCommand( 'bettercomment.toggle', function()
     {
-        var textEditor = vscode.window.activeTextEditor;
-        var selection = textEditor.selection;
+        var editor = vscode.window.activeTextEditor;
+        var selection = editor.selection;
 
         var s = selection.start;
         var e = selection.end;
 
-        var withinComment = textEditor.document.getWordRangeAtPosition( selection.active, /\/\*.+\*\// );
         var hasSelection = s.line !== e.line || s.character !== e.character;
+        var withinComment = false;
+        var line = editor.document.lineAt( s.line ).text;
+        var blockCommentPattern = /\/\*.+?\*\//g;
+
+        while( match = blockCommentPattern.exec( line ) )
+        {
+            if( s.character >= match.index && s.character <= blockCommentPattern.lastIndex )
+            {
+                withinComment = true;
+            }
+        }
 
         if( !hasSelection && withinComment || hasSelection && s.character !== 0 )
         {

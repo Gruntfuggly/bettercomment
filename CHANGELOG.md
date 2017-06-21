@@ -1,3 +1,6 @@
+# v0.0.5 - 2017-06-21
+- Now detects block comments with spaces in
+
 # v0.0.4 - 2017-06-20
 - Moved to github repository
 
