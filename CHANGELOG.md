@@ -1,3 +1,6 @@
+# v0.0.4 - 2017-06-20
+- Moved to github repository
+
 # v0.0.3 - 2017-06-20
 - Now actually detects block comment under cursor - much better.
 - TODO:
