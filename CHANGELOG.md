@@ -1,3 +1,6 @@
+# v0.0.6 - 2018-01-15
+- New feature: Can now put a block comment on each line of files which don't have line comments, e.g. HTML, XML, CSS, etc.
+
 # v0.0.5 - 2017-06-21
 - Now detects block comments with spaces in
 
