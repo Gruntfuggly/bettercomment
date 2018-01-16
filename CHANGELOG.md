@@ -1,3 +1,6 @@
+# v0.0.7 - 2018-01-16
+- Fix dependency on minimatch
+
 # v0.0.6 - 2018-01-15
 - New feature: Can now put a block comment on each line of files which don't have line comments, e.g. HTML, XML, CSS, etc.
 
