@@ -1,3 +1,6 @@
+# v0.0.8 - 2018-08-25
+- Add work around for odd vscode behaviour (see https://github.com/Microsoft/vscode/issues/50333)
+
 # v0.0.7 - 2018-01-16
 - Fix dependency on minimatch
 

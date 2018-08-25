@@ -1,6 +1,6 @@
 
-var vscode = require( 'vscode' ),
-    minimatch = require( 'minimatch' );
+var vscode = require( 'vscode' );
+var minimatch = require( 'minimatch' );
 
 function activate( context )
 {
@@ -62,7 +62,13 @@ function activate( context )
         }
         else
         {
-            vscode.commands.executeCommand( 'editor.action.commentLine' );
+            vscode.commands.executeCommand( 'editor.action.commentLine' ).then( function()
+            {
+                if( s.character === 0 && editor.selection.start.character !== 0 )
+                {
+                    editor.selection = new vscode.Selection( new vscode.Position( editor.selection.start.line, 0 ), editor.selection.end );
+                }
+            } );
         }
     } );
     context.subscriptions.push( disposable );
