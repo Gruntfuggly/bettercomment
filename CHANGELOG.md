@@ -2,6 +2,7 @@
 
 - Fix force line comments
 - Fix markdown lint errors in CHANGELOG.md and README.md
+- Add license
 
 ## v0.0.8 - 2018-08-25
 

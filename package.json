@@ -6,6 +6,7 @@
     "version": "0.0.8",
     "publisher": "Gruntfuggly",
     "repository": "https://github.com/Gruntfuggly/bettercomment",
+    "license": "MIT",
     "engines": {
         "vscode": "^1.5.0"
     },
@@ -49,12 +50,12 @@
         }
     },
     "devDependencies": {
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0",
-        "mocha": "^2.3.3",
-        "eslint": "^3.6.0",
+        "@types/mocha": "^2.2.32",
         "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32"
+        "eslint": "^3.6.0",
+        "mocha": "^7.1.0",
+        "typescript": "^2.0.3",
+        "vscode": "^1.1.36"
     },
     "__metadata": {
         "id": "515c294e-f858-41d3-8714-7d7242bb8d9a",
