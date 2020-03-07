@@ -1,3 +1,5 @@
+- Fix force line comments
+
 # v0.0.8 - 2018-08-25
 - Add work around for odd vscode behaviour (see https://github.com/Microsoft/vscode/issues/50333)
 

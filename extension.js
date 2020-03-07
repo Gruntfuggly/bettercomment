@@ -26,6 +26,7 @@ function activate( context )
 
         var s = selection.start;
         var e = selection.end;
+        var r = selection.isReversed;
 
         var hasSelection = s.line !== e.line || s.character !== e.character;
         var withinComment = false;
@@ -40,20 +41,30 @@ function activate( context )
             }
         }
 
+        function commentLine()
+        {
+            var position = new vscode.Position( lineToComment, 0 );
+            editor.selection = new vscode.Selection( position, position );
+
+            vscode.commands.executeCommand( 'editor.action.commentLine' ).then( function( result )
+            {
+                lineToComment++;
+                if( lineToComment <= lastLine )
+                {
+                    commentLine();
+                }
+                else
+                {
+                    editor.selection = new vscode.Selection( r ? e : s, r ? s : e );
+                }
+            } );
+        }
+
         if( forceLineComment( editor.document.fileName ) && s.line !== e.line )
         {
             var lastLine = e.character > 0 ? e.line : e.line - 1;
-            var line = s.line;
-            while( line <= lastLine )
-            {
-                var position = new vscode.Position( line, 0 );
-                editor.selection = new vscode.Selection( position, position );
-                editor.revealRange( editor.selection, vscode.TextEditorRevealType.Default );
-                vscode.commands.executeCommand( 'editor.action.commentLine' );
-                ++line;
-            }
-            editor.selection = new vscode.Selection( s, e );
-            editor.revealRange( editor.selection, vscode.TextEditorRevealType.Default );
+            var lineToComment = s.line;
+            commentLine();
 
         }
         else if( !hasSelection && withinComment || hasSelection && s.character !== 0 )
