@@ -9,7 +9,7 @@ function activate( context )
         var result = false;
         vscode.workspace.getConfiguration( 'betterComment' ).forcedLineComment.map( function( glob )
         {
-            let filePath = vscode.workspace.asRelativePath( filename );
+            var filePath = vscode.workspace.asRelativePath( filename );
             if( minimatch( filePath, glob, { matchBase: true } ) )
             {
                 result = true;
