@@ -1,5 +1,7 @@
 # Better Comment Change Log
 
+## v0.0.9 - 2020-03-07
+
 - Fix force line comments
 - Fix markdown lint errors in CHANGELOG.md and README.md
 - Add license
