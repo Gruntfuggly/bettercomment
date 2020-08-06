@@ -1,5 +1,9 @@
 # Better Comment Change Log
 
+## v0.0.10 - 2020-08-06
+
+- Bump eslint
+
 ## v0.0.9 - 2020-03-07
 
 - Fix force line comments
