@@ -1,5 +1,7 @@
 # Better Comment Change Log
 
+## v0.0.11 - 2021-01-21
+
 - Allow block comment detection over multiple lines
 
 ## v0.0.10 - 2020-08-06
