@@ -1,5 +1,7 @@
 # Better Comment Change Log
 
+- Allow block comment detection over multiple lines
+
 ## v0.0.10 - 2020-08-06
 
 - Bump eslint

@@ -30,15 +30,19 @@ function activate( context )
 
         var hasSelection = s.line !== e.line || s.character !== e.character;
         var withinComment = false;
-        var line = editor.document.lineAt( s.line ).text;
-        var blockCommentPattern = /\/\*.+?\*\//g;
 
-        while( match = blockCommentPattern.exec( line ) )
+        var beforeText = editor.document.getText().substr( 0, editor.document.offsetAt( selection.start ) );
+        var afterText = editor.document.getText().substr( editor.document.offsetAt( selection.start ) );
+        var lastOpeningComment = beforeText.lastIndexOf( "/*" );
+        var lastClosingComment = beforeText.lastIndexOf( "*/" );
+        var nextClosingComment = afterText.indexOf( "*/" );
+
+        if( lastOpeningComment !== -1 && nextClosingComment !== -1 && lastOpeningComment > lastClosingComment )
         {
-            if( s.character >= match.index && s.character <= blockCommentPattern.lastIndex )
-            {
-                withinComment = true;
-            }
+            withinComment = true;
+            var selectionStart = editor.document.positionAt( lastOpeningComment );
+            var selectionEnd = editor.document.positionAt( beforeText.length + nextClosingComment );
+            editor.selection = new vscode.Selection( selectionStart, selectionEnd );
         }
 
         function commentLine()
@@ -65,7 +69,6 @@ function activate( context )
             var lastLine = e.character > 0 ? e.line : e.line - 1;
             var lineToComment = s.line;
             commentLine();
-
         }
         else if( !hasSelection && withinComment || hasSelection && s.character !== 0 )
         {
