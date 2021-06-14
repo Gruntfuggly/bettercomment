@@ -1,5 +1,7 @@
 # Better Comment Change Log
 
+- Add workspace trust flag
+
 ## v0.0.11 - 2021-01-21
 
 - Allow block comment detection over multiple lines

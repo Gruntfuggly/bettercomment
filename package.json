@@ -17,6 +17,11 @@
         "*"
     ],
     "main": "./extension",
+    "capabilities": {
+        "untrustedWorkspaces": {
+            "supported": true
+        }
+    },
     "contributes": {
         "commands": [
             {
