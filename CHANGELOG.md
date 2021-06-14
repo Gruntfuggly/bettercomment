@@ -1,5 +1,9 @@
 # Better Comment Change Log
 
+## v0.0.13 - 2021-06-14
+
+- Dependency security fixes
+
 ## v0.0.12 - 2021-06-14
 
 - Add workspace trust flag
