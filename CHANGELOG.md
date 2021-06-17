@@ -1,5 +1,7 @@
 # Better Comment Change Log
 
+## v0.0.14 - 2021-06-17
+
 - Handle edge case where the start of a block comment is commented
 
 ## v0.0.13 - 2021-06-14
