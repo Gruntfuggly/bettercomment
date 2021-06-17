@@ -39,7 +39,7 @@
         ],
         "configuration": {
             "type": "object",
-            "title": "Better Comment configuration",
+            "title": "Better Comment",
             "properties": {
                 "betterComment.forcedLineComment": {
                     "type": "array",
@@ -60,7 +60,7 @@
         "eslint": "^4.18.2",
         "mocha": "^7.1.0",
         "typescript": "^2.0.3",
-        "vscode": "^1.1.36"
+        "vscode": "^0.9.9"
     },
     "__metadata": {
         "id": "515c294e-f858-41d3-8714-7d7242bb8d9a",
@@ -68,6 +68,7 @@
         "publisherId": "d4906d2e-f2ee-492d-9c7c-02b6160599ec"
     },
     "dependencies": {
+        "comment-patterns": "^0.12.0",
         "minimatch": "^3.0.4"
     }
 }

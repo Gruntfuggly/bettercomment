@@ -1,5 +1,7 @@
 # Better Comment Change Log
 
+- Get correct block comments for file types
+
 ## v0.0.14 - 2021-06-17
 
 - Handle edge case where the start of a block comment is commented

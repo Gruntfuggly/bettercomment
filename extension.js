@@ -1,6 +1,7 @@
 
 var vscode = require( 'vscode' );
 var minimatch = require( 'minimatch' );
+var commentPatterns = require( 'comment-patterns' );
 
 function activate( context )
 {
@@ -19,7 +20,7 @@ function activate( context )
         return result;
     }
 
-    function isCommented( document, offset )
+    function isCommented( document, offset, singleLineComment )
     {
         if( offset <= 0 )
         {
@@ -28,7 +29,7 @@ function activate( context )
 
         var line = document.lineAt( document.positionAt( offset ) );
         var lineOffset = document.offsetAt( line.range.start );
-        var commentIndex = line.text.indexOf( "//" );
+        var commentIndex = line.text.indexOf( singleLineComment );
         if( commentIndex === -1 )
         {
             return false;
@@ -41,6 +42,44 @@ function activate( context )
         var editor = vscode.window.activeTextEditor;
         var selection = editor.selection;
 
+        var singleLineComment = "//";
+        var blockStart = "/*";
+        var blockEnd = "*/";
+
+        var commentPattern;
+        try
+        {
+            commentPattern = commentPatterns( editor.document.uri.fsPath );
+
+            if( commentPattern && commentPattern.name === 'Markdown' )
+            {
+                commentPattern = commentPatterns( ".html" );
+            }
+
+            if( commentPattern && commentPattern.singleLineComment && commentPattern.singleLineComment.length > 0 )
+            {
+                singleLineComment = commentPattern.singleLineComment[ 0 ].start;
+            }
+            if( commentPattern && commentPattern.multiLineComment && commentPattern.multiLineComment.length > 0 )
+            {
+                if( commentPattern.multiLineComment[ 0 ].start.source )
+                {
+                    blockStart = commentPattern.multiLineComment[ 0 ].start.source;
+                    if( blockStart === "\\/\\*\\*" )
+                    {
+                        blockStart = "/*";
+                    }
+                }
+                else
+                {
+                    blockStart = commentPattern.multiLineComment[ 0 ].start;
+                }
+                blockEnd = commentPattern.multiLineComment[ 0 ].end;
+            }
+        }
+        catch( e )
+        {
+        }
         var s = selection.start;
         var e = selection.end;
         var r = selection.isReversed;
@@ -50,16 +89,16 @@ function activate( context )
 
         var beforeText = editor.document.getText().substr( 0, editor.document.offsetAt( selection.start ) );
         var afterText = editor.document.getText().substr( editor.document.offsetAt( selection.start ) );
-        var lastOpeningComment = beforeText.lastIndexOf( "/*" );
+        var lastOpeningComment = beforeText.lastIndexOf( blockStart );
 
-        while( isCommented( editor.document, lastOpeningComment ) )
+        while( isCommented( editor.document, lastOpeningComment, singleLineComment ) )
         {
             beforeText = beforeText.substr( 0, lastOpeningComment );
-            lastOpeningComment = beforeText.lastIndexOf( "/*" );
+            lastOpeningComment = beforeText.lastIndexOf( blockStart );
         }
 
-        var lastClosingComment = beforeText.lastIndexOf( "*/" );
-        var nextClosingComment = afterText.indexOf( "*/" );
+        var lastClosingComment = beforeText.lastIndexOf( blockEnd );
+        var nextClosingComment = afterText.indexOf( blockEnd );
 
         if( lastOpeningComment !== -1 && nextClosingComment !== -1 && lastOpeningComment > lastClosingComment )
         {
