@@ -1,5 +1,7 @@
 # Better Comment Change Log
 
+- Handle edge case where the start of a block comment is commented
+
 ## v0.0.13 - 2021-06-14
 
 - Dependency security fixes

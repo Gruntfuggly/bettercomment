@@ -19,6 +19,23 @@ function activate( context )
         return result;
     }
 
+    function isCommented( document, offset )
+    {
+        if( offset <= 0 )
+        {
+            return false;
+        }
+
+        var line = document.lineAt( document.positionAt( offset ) );
+        var lineOffset = document.offsetAt( line.range.start );
+        var commentIndex = line.text.indexOf( "//" );
+        if( commentIndex === -1 )
+        {
+            return false;
+        }
+        return commentIndex < offset - lineOffset;
+    }
+
     var disposable = vscode.commands.registerCommand( 'bettercomment.toggle', function()
     {
         var editor = vscode.window.activeTextEditor;
@@ -34,6 +51,13 @@ function activate( context )
         var beforeText = editor.document.getText().substr( 0, editor.document.offsetAt( selection.start ) );
         var afterText = editor.document.getText().substr( editor.document.offsetAt( selection.start ) );
         var lastOpeningComment = beforeText.lastIndexOf( "/*" );
+
+        while( isCommented( editor.document, lastOpeningComment ) )
+        {
+            beforeText = beforeText.substr( 0, lastOpeningComment );
+            lastOpeningComment = beforeText.lastIndexOf( "/*" );
+        }
+
         var lastClosingComment = beforeText.lastIndexOf( "*/" );
         var nextClosingComment = afterText.indexOf( "*/" );
 

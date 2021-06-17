@@ -6,6 +6,8 @@ By default, it overrides the standard line comment toggle key definition, `Ctrl+
 
 Lastly, if a multi-line selection is commented in a file which doesn't support line comments (see configuration), the selection will be commented with a block comment on each line. Override the configuration to an empty array to disable this behaviour.
 
+*Note: Currently the extension assumes that block comments are C style, e.g.* `/* comment */`. *This will be extended in s future release to handle other languages.*
+
 ## Installing
 
 You can install the latest version of the extension via the Visual Studio Marketplace [here](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.bettercomment).
