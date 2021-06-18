@@ -1,5 +1,7 @@
 # Better Comment Change Log
 
+## v0.0.15 - 2021-06-18
+
 - Get correct block comments for file types
 
 ## v0.0.14 - 2021-06-17
