@@ -45,10 +45,10 @@
                     "type": "array",
                     "description": "Glob patterns to match files that should have block comments treated as multiple line comments ",
                     "default": [
-                        "**/*.xml",
-                        "**/*.html",
-                        "**/*.css",
-                        "**/*.md"
+                        "*.xml",
+                        "*.html",
+                        "*.css",
+                        "*.md"
                     ]
                 }
             }
